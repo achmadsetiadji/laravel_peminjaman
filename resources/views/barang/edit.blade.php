@@ -68,7 +68,7 @@
                 <div class="form-group">
                     <label for="gambar_barang">Gambar barang</label>
                     <div class="col-md-6">
-                        <img width="1000" height="500" src="{{ asset('image/upload/'.$barang->gambar_barang) }}" />
+                        <img class="img-fluid img-responsive" width="1000" src="{{ asset('image/upload/'.$barang->gambar_barang) }}" />
                     </div>
                     <input class="mt-2" type="file" id="gambar_barang" name="gambar_barang" value="{{ $barang->gambar_barang }}">
                 </div>

@@ -59,7 +59,7 @@
                             <td class="text-center">{{ $barang->nama_barang }}</td>
                             <td class="text-center">{{ $barang->kondisi_barang }}</td>
                             <td class="text-center">{{ $barang->tahun_pembelian }}</td>
-                            <td class="text-center"><img width="150px" src="{{ asset('image/upload/'.$barang->gambar_barang) }}"></td>
+                            <td class="text-center"><img class="img-fluid" width="150px" src="{{ asset('image/upload/'.$barang->gambar_barang) }}"></td>
                             <td class="text-center">
                                 <a href="/barang/{{ $barang->id }}/edit" class="btn btn-small text-success">
                                     <i class="fa fa-edit"></i><span class="ml-2">Edit</span>

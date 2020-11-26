@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        $auths = User::where('id', Auth::user()->id)->get();
+        return view('user/index', compact('users', 'auths'));
     }
 
     /**
@@ -68,9 +72,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('user/edit', compact('user'));
     }
 
     /**
@@ -80,9 +84,67 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        if (Auth::user()->role_id == 3) {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email',
+                'nik' => 'required|max:16',
+                'avatar' => 'mimes:png,jpg,jpeg'
+            ]);
+
+            $file = $request->file('avatar');
+            $tujuan_upload = 'image/upload/avatar';
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+
+            User::where('id', $user->id)
+                ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'nik' => $request->nik,
+                    'avatar' => $file->getClientOriginalName(),
+                ]);
+            return redirect('/user')->with('status', 'Your Profile Has Been Updated!');
+        } else if (Auth::user()->role_id == 4) {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email',
+                'nipd' => 'required|max:11',
+                'avatar' => 'mimes:png,jpg,jpeg'
+            ]);
+
+            $file = $request->file('avatar');
+            $tujuan_upload = 'image/upload/avatar';
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+
+            User::where('id', $user->id)
+                ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'nipd' => $request->nipd,
+                    'avatar' => $file->getClientOriginalName(),
+                ]);
+            return redirect('/user')->with('status', 'Your Profile Has Been Updated!');
+        } else {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email',
+                'avatar' => 'mimes:png,jpg,jpeg'
+            ]);
+
+            $file = $request->file('avatar');
+            $tujuan_upload = 'image/upload/avatar';
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+
+            User::where('id', $user->id)
+            ->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'avatar' => $file->getClientOriginalName(),
+            ]);
+            return redirect('/user')->with('status', 'Your Profile Has Been Updated!');
+        }
     }
 
     /**
@@ -94,15 +156,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function registerGuru()
-    {
-        return view('auth/registerguru');
-    }
-
-    public function registerSiswa()
-    {
-        return view('auth/registersiswa');
     }
 }
