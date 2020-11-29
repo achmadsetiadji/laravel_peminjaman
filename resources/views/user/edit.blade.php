@@ -42,6 +42,28 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="form-group">
+                        <label for="jabatan_id">Jabatan</label>
+                        <div class="input-group mb-3">
+                            <select class="custom-select form-control @error('jabatan_id') is-invalid @enderror"
+                                id="jabatan_id" placeholder="Masukan Jabatan" name="jabatan_id"
+                                value="{{ old('jabatan_id') }}">
+                                <option>Choose...</option>
+                                @foreach($jabatans as $jabatan)
+                                    <option value="{{ $jabatan->id }}"
+                                        @if ($jabatan->id == $user->jabatan_id)
+                                            selected
+                                        @endif>
+                                        {{ $jabatan->nama_jabatan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('jabatan_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 @elseif (auth()->user()->role_id == '4')
                     <div class="form-group">
                         <label for="nipd">NIPD</label>

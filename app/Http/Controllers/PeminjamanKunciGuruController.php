@@ -57,7 +57,7 @@ class PeminjamanKunciGuruController extends Controller
             'tanggal_kembali' => 'required',
             'status' => 'required',
         ]);
-        
+
         PeminjamanKunciGuru::create($request->all());
         return redirect('/peminjaman_kunci_guru')->with('status', 'Data Peminjaman Berhasil Ditambahkan!');
     }
@@ -112,5 +112,13 @@ class PeminjamanKunciGuruController extends Controller
     {
         PeminjamanKunciGuru::destroy($peminjamanKunciGuru->id);
         return redirect('/peminjaman_kunci_guru')->with('statusDelete', 'Data Peminjaman Berhasil Dihapus!');
+    }
+
+    public function sortByMonth(Request $request)
+    {
+        $date = $request->sortMonth;
+        session(['sortMonthKunciGuru' => $date]);
+        $peminjamankuncigurus = PeminjamanKunciGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
+        return view('peminjaman_kunci_guru/index', compact('peminjamankuncigurus'));
     }
 }

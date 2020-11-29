@@ -121,4 +121,12 @@ class PeminjamanBarangSiswaController extends Controller
         PeminjamanBarangSiswa::destroy($peminjamanBarangSiswa->id);
         return redirect('/peminjaman_barang_siswa')->with('statusDelete', 'Data Peminjaman Berhasil Dihapus!');
     }
+
+    public function sortByMonth(Request $request)
+    {
+        $date = $request->sortMonth;
+        session(['sortMonthBarangSiswa' => $date]);
+        $peminjamanbarangsiswas = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
+        return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas'));
+    }
 }

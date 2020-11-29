@@ -38,9 +38,26 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="/peminjaman_kunci_guru/create" class="text-primary">
-                <i class="fas fa-plus"><span class="ml-2">Tambah Peminjaman Kunci Guru</span></i>
-            </a>
+            <div class="row">
+                <div class="col-md-7">
+                    <a href="/peminjaman_kunci_guru/create" class="text-primary">
+                        <i class="fas fa-plus"><span class="ml-2">Tambah Peminjaman Kunci Guru</span></i>
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    @if (auth()->user()->role_id == "1")
+                    <div class="col-lg-8">
+                        <form class="form-inline" method="GET" action="peminjaman_kunci_guru_sort">
+                            <div class="form-group">
+                                <label for="sort_month" class="mr-2">Sort by Month:</label>
+                                <input type="month" name="sortMonth" class="form-control mr-3">
+                                <button type="submit" class="btn btn-primary">Cari</button>
+                            </div>
+                        </form>
+                    </div>
+                    @endif
+                </div>
+            </div>
         </div>
 
         <div class="card-body">

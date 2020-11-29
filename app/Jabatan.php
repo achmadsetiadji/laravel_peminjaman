@@ -17,4 +17,9 @@ class Jabatan extends Model
     {
         return $this->belongsTo('App\PeminjamanKunciGuru');
     }
+
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

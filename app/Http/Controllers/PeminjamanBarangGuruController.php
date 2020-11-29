@@ -45,7 +45,7 @@ class PeminjamanBarangGuruController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, PeminjamanBarangGuru $peminjamanBarangGuru)
+    public function store(Request $request)
     {        $request->validate([
             'user_id' => 'required',
             'nama_peminjam' => 'required',
@@ -111,5 +111,13 @@ class PeminjamanBarangGuruController extends Controller
     {
         PeminjamanBarangGuru::destroy($peminjamanBarangGuru->id);
         return redirect('/peminjaman_barang_guru')->with('statusDelete', 'Data Peminjaman Berhasil Dihapus!');
+    }
+
+    public function sortByMonth(Request $request)
+    {
+        $date = $request->sortMonth;
+        session(['sortMonthBarangGuru' => $date]);
+        $peminjamanbaranggurus = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE' ,'%'.$date.'%')->get();
+        return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus'));
     }
 }

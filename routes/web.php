@@ -1,5 +1,6 @@
 <?php
 
+use App\PeminjamanBarangGuru;
 use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,13 @@ Route::resource('peminjaman_kunci_siswa', 'PeminjamanKunciSiswaController');
 Route::resource('peminjaman_barang_guru', 'PeminjamanBarangGuruController');
 Route::resource('peminjaman_kunci_guru', 'PeminjamanKunciGuruController');
 
+//sort by month peminjaman guru
+Route::get('peminjaman_barang_guru_sort', 'PeminjamanBarangGuruController@sortByMonth');
+Route::get('peminjaman_kunci_guru_sort', 'PeminjamanKunciGuruController@sortByMonth');
+
+//sort by month peminjaman siswa
+Route::get('peminjaman_barang_siswa_sort', 'PeminjamanBarangSiswaController@sortByMonth');
+Route::get('peminjaman_kunci_siswa_sort', 'PeminjamanKunciSiswaController@sortByMonth');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

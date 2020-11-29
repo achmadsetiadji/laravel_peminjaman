@@ -13,28 +13,32 @@ class PDFController extends Controller
 {
     public function peminjamanBarangSiswapdf()
     {
-        $peminjamanbarangsiswas = PeminjamanBarangSiswa::all();
+        $date = session('sortMonthBarangSiswa');
+        $peminjamanbarangsiswas = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         $pdf = 'PDF'::loadView('peminjaman_barang_siswa/pdfpreview', compact('peminjamanbarangsiswas'))->setPaper('a4', 'landscape');
         return $pdf->stream('laporan_peminjaman_barang_siswa_' . date('Y-m-d_H-i-s') . '.pdf');
     }
 
     public function peminjamanBarangGurupdf()
     {
-        $peminjamanbaranggurus = PeminjamanBarangGuru::all();
+        $date = session('sortMonthBarangGuru');
+        $peminjamanbaranggurus = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         $pdf = 'PDF'::loadView('peminjaman_barang_guru/pdfpreview', compact('peminjamanbaranggurus'))->setPaper('a4', 'landscape');
         return $pdf->stream('laporan_peminjaman_barang_guru_' . date('Y-m-d_H-i-s') . '.pdf');
     }
 
     public function peminjamanKunciSiswapdf()
     {
-        $peminjamankuncisiswas = PeminjamanKunciSiswa::all();
+        $date = session('sortMonthKunciSiswa');
+        $peminjamankuncisiswas = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         $pdf = 'PDF'::loadView('peminjaman_kunci_siswa/pdfpreview', compact('peminjamankuncisiswas'))->setPaper('a4', 'landscape');
         return $pdf->stream('laporan_peminjaman_kunci_siswa_' . date('Y-m-d_H-i-s') . '.pdf');
     }
 
     public function peminjamanKunciGurupdf()
     {
-        $peminjamankuncigurus = PeminjamanKunciGuru::all();
+        $date = session('sortMonthKunciGuru');
+        $peminjamankuncigurus = PeminjamanKunciGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         $pdf = 'PDF'::loadView('peminjaman_kunci_guru/pdfpreview', compact('peminjamankuncigurus'))->setPaper('a4', 'landscape');
         return $pdf->stream('laporan_peminjaman_kunci_guru_' . date('Y-m-d_H-i-s') . '.pdf');
     }

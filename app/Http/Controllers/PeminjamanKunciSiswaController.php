@@ -112,4 +112,12 @@ class PeminjamanKunciSiswaController extends Controller
         PeminjamanKunciSiswa::destroy($peminjamanKunciSiswa->id);
         return redirect('/peminjaman_kunci_siswa')->with('statusDelete', 'Data Peminjaman Berhasil Dihapus!');
     }
+
+    public function sortByMonth(Request $request)
+    {
+        $date = $request->sortMonth;
+        session(['sortMonthKunciSiswa' => $date]);
+        $peminjamankuncisiswas = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
+        return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas'));
+    }
 }

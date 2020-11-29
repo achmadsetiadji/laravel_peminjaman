@@ -10,9 +10,11 @@ use App\Kunci;
 //siswa
 use App\PeminjamanBarangSiswa;
 use App\PeminjamanKunciSiswa;
+
 //guru
 use App\PeminjamanBarangGuru;
 use App\PeminjamanKunciGuru;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -47,30 +49,44 @@ class HomeController extends Controller
             //peminjaman siswa
             'count_peminjaman_barang_siswa' => PeminjamanBarangSiswa::all()->count(),
             'count_peminjaman_kunci_siswa' => PeminjamanKunciSiswa::all()->count(),
+
             //barang
+            'count_peminjaman_barang_siswa_pending' => PeminjamanBarangSiswa::where('status', 'Pending')->count(),
             'count_peminjaman_barang_siswa_pinjam' => PeminjamanBarangSiswa::where('status', 'Dipinjam')->count(),
             'count_peminjaman_barang_siswa_kembali' => PeminjamanBarangSiswa::where('status', 'Dikembalikan')->count(),
+
             //kunci
+            'count_peminjaman_kunci_siswa_pending' => PeminjamanKunciSiswa::where('status', 'Pending')->count(),
             'count_peminjaman_kunci_siswa_pinjam' => PeminjamanKunciSiswa::where('status', 'Dipinjam')->count(),
             'count_peminjaman_kunci_siswa_kembali' => PeminjamanKunciSiswa::where('status', 'Dikembalikan')->count(),
-            //user sesuai user login
+
+            //peminjaman barang sesuai siswa login
             'count_peminjaman_barang_user_siswa_pinjam' => PeminjamanBarangSiswa::where('user_id', Auth::user()->id)->where('status', 'Dipinjam')->count(),
             'count_peminjaman_barang_user_siswa_kembali' => PeminjamanBarangSiswa::where('user_id', Auth::user()->id)->where('status', 'Dikembalikan')->count(),
+
+            //peminjaman Kunci sesuai siswa login
             'count_peminjaman_kunci_user_siswa_pinjam' => PeminjamanKunciSiswa::where('user_id', Auth::user()->id)->where('status', 'Dipinjam')->count(),
             'count_peminjaman_kunci_user_siswa_kembali' => PeminjamanKunciSiswa::where('user_id', Auth::user()->id)->where('status', 'Dikembalikan')->count(),
 
             //peminjaman guru
             'count_peminjaman_barang_guru' => PeminjamanBarangGuru::all()->count(),
             'count_peminjaman_kunci_guru' => PeminjamanKunciGuru::all()->count(),
+
             //barang
+            'count_peminjaman_barang_guru_pending' => PeminjamanBarangGuru::where('status', 'Pending')->count(),
             'count_peminjaman_barang_guru_pinjam' => PeminjamanBarangGuru::where('status', 'Dipinjam')->count(),
             'count_peminjaman_barang_guru_kembali' => PeminjamanBarangGuru::where('status', 'Dikembalikan')->count(),
+
             //kunci
-            'count_peminjaman_kunci_guru_pinjam' => PeminjamanKunciGuru::where('status', 'Dipinjam')->count(),
+            'count_peminjaman_kunci_guru_pending' => PeminjamanKunciGuru::where('status', 'Pending')->count(),
+            'count_peminjaman_kunci_guru_pinjam' => PeminjamanKunciGuru::where('status', 'Pending')->count(),
             'count_peminjaman_kunci_guru_kembali' => PeminjamanKunciGuru::where('status', 'Dikembalikan')->count(),
-            //user sesuai user login
+
+            //peminjaman barang sesuai guru login
             'count_peminjaman_barang_user_guru_pinjam' => PeminjamanBarangGuru::where('user_id', Auth::user()->id)->where('status', 'Dipinjam')->count(),
             'count_peminjaman_barang_user_guru_kembali' => PeminjamanBarangGuru::where('user_id', Auth::user()->id)->where('status', 'Dikembalikan')->count(),
+
+            //peminjaman barang sesuai guru login
             'count_peminjaman_kunci_user_guru_pinjam' => PeminjamanKunciGuru::where('user_id', Auth::user()->id)->where('status', 'Dipinjam')->count(),
             'count_peminjaman_kunci_user_guru_kembali' => PeminjamanKunciGuru::where('user_id', Auth::user()->id)->where('status', 'Dikembalikan')->count(),
         ]);
