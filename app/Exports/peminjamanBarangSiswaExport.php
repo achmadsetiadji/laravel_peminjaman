@@ -10,7 +10,8 @@ class peminjamanBarangSiswaExport implements FromView
 {
     public function view(): View
     {
-        $peminjamanbarangsiswas = PeminjamanBarangSiswa::all();
+        $date = session('sortMonthBarangSiswa');
+        $peminjamanbarangsiswas = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         return view('peminjaman_barang_siswa/pdfpreview', compact('peminjamanbarangsiswas'));
     }
 }

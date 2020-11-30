@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Excel;
-use Illuminate\Http\Request;
 use App\Exports\peminjamanBarangSiswaExport;
 use App\Exports\peminjamanBarangGuruExport;
 use App\Exports\peminjamanKunciGuruExport;

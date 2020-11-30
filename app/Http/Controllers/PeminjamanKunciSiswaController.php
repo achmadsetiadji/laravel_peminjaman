@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use DateTime;
 use App\Kunci;
 use App\KelasRuang;
 use App\PeminjamanKunciSiswa;
@@ -36,7 +36,9 @@ class PeminjamanKunciSiswaController extends Controller
     {
         $kelass = KelasRuang::all();
         $kuncis = Kunci::all();
-        return view('peminjaman_kunci_siswa/create', compact('kelass', 'kuncis'));
+        $dt = new DateTime();
+        $date = $dt->format('Y-m-d\TH:i');
+        return view('peminjaman_kunci_siswa/create', compact('kelass', 'kuncis', 'date'));
     }
 
     /**

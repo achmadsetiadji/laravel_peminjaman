@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use DateTime;
 use App\Barang;
 use App\Mapel;
 use App\Guru;
@@ -40,7 +40,9 @@ class PeminjamanBarangSiswaController extends Controller
         $mapels = Mapel::all();
         $gurus = Guru::all();
         $kelass = KelasRuang::all();
-        return view('peminjaman_barang_siswa/create', compact('barangs', 'mapels', 'gurus', 'kelass'));
+        $dt = new DateTime();
+        $date = $dt->format('Y-m-d\TH:i');
+        return view('peminjaman_barang_siswa/create', compact('barangs', 'mapels', 'gurus', 'kelass', 'date'));
     }
 
     /**

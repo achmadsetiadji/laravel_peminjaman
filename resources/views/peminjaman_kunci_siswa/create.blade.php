@@ -50,16 +50,6 @@
                     </div>
                 @endif
 
-                {{-- <div class="form-group">
-                    <label for="nipd">NIPD</label>
-                    <input type="number" class="form-control @error('nipd') is-invalid @enderror" id="nipd"
-                        placeholder="Masukan NIPD" name="nipd"
-                        value="{{ old('nipd') }}">
-                    @error('nipd')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div> --}}
-
                 <div class="form-group">
                     <label for="kunci_id">Kunci Ruangan</label>
                     <div class="input-group mb-3">
@@ -100,18 +90,18 @@
 
                 <div class="form-group col-4">
                     <label for="tanggal_pinjam">Tanggal Pinjam Barang</label>
-                    <input type="date" class="form-control @error('tanggal_pinjam') is-invalid @enderror"
+                    <input type="datetime-local" class="form-control @error('tanggal_pinjam') is-invalid @enderror"
                         id="tanggal_pinjam" placeholder="Masukan Tanggal Pinjam Barang" name="tanggal_pinjam"
-                        value="{{ Date('Y-m-d') }}" disabled>
+                        value="{{ $date }}" disabled>
                     @error('tanggal_pinjam')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                    <input type="hidden" id="tanggal_pinjam" name="tanggal_pinjam" value="{{ Date('Y-m-d') }}">
+                    <input type="hidden" id="tanggal_pinjam" name="tanggal_pinjam" value="{{ $date }}">
                 </div>
 
                 <div class="form-group col-4">
                     <label for="tanggal_kembali">Tanggal Kembali Barang</label>
-                    <input type="date" class="form-control @error('tanggal_kembali') is-invalid @enderror"
+                    <input type="datetime-local" class="form-control @error('tanggal_kembali') is-invalid @enderror"
                         id="tanggal_kembali" placeholder="Masukan Tanggal Kembali Barang" name="tanggal_kembali"
                         value="{{ old('tanggal_kembali') }}">
                     @error('tanggal_kembali')

@@ -10,7 +10,8 @@ class peminjamanKunciSiswaExport implements FromView
 {
     public function view(): View
     {
-        $peminjamankuncisiswas = PeminjamanKunciSiswa::all();
+        $date = session('sortMonthKunciSiswa');
+        $peminjamankuncisiswas = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         return view('peminjaman_kunci_siswa/pdfpreview', compact('peminjamankuncisiswas'));
     }
 }

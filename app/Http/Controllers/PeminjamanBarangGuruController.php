@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use DateTime;
 use App\Barang;
 use App\Jabatan;
 use App\PeminjamanBarangGuru;
@@ -36,7 +36,9 @@ class PeminjamanBarangGuruController extends Controller
     {
         $barangs = Barang::all();
         $jabatans = Jabatan::all();
-        return view('peminjaman_barang_guru/create', compact('barangs', 'jabatans'));
+        $dt = new DateTime();
+        $date = $dt->format('Y-m-d\TH:i');
+        return view('peminjaman_barang_guru/create', compact('barangs', 'jabatans', 'date'));
     }
 
     /**

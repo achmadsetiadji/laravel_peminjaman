@@ -50,24 +50,7 @@
                     </div>
                 @endif
 
-                <div class="form-group">
-                    <label for="jabatan_id">Jabatan</label>
-                    <div class="input-group mb-3">
-                        <select class="custom-select form-control @error('jabatan_id') is-invalid @enderror"
-                            id="jabatan_id" placeholder="Masukan Jabatan" name="jabatan_id"
-                            value="{{ old('jabatan_id') }}">
-                            <option selected>Choose...</option>
-                            @foreach($jabatans as $jabatan)
-                                <option value="{{ $jabatan->id }}">
-                                    {{ $jabatan->nama_jabatan }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('jabatan_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
+                <input type="hidden" id="jabatan_id" name="jabatan_id" value="{{ Auth::user()->jabatan_id }}">
 
                 <div class="form-group">
                     <label for="kunci_id">Kunci</label>
@@ -90,18 +73,18 @@
 
                 <div class="form-group col-4">
                     <label for="tanggal_pinjam">Tanggal Pinjam Barang</label>
-                    <input type="date" class="form-control @error('tanggal_pinjam') is-invalid @enderror"
+                    <input type="datetime-local" class="form-control @error('tanggal_pinjam') is-invalid @enderror"
                         id="tanggal_pinjam" placeholder="Masukan Tanggal Pinjam Barang" name="tanggal_pinjam"
-                        value="{{ Date('Y-m-d') }}" disabled>
+                        value="{{ $date }}" disabled>
                     @error('tanggal_pinjam')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                    <input type="hidden" id="tanggal_pinjam" name="tanggal_pinjam" value="{{ Date('Y-m-d') }}">
+                    <input type="hidden" id="tanggal_pinjam" name="tanggal_pinjam" value="{{ $date }}">
                 </div>
 
                 <div class="form-group col-4">
                     <label for="tanggal_kembali">Tanggal Kembali Barang</label>
-                    <input type="date" class="form-control @error('tanggal_kembali') is-invalid @enderror"
+                    <input type="datetime-local" class="form-control @error('tanggal_kembali') is-invalid @enderror"
                         id="tanggal_kembali" placeholder="Masukan Tanggal Kembali Barang" name="tanggal_kembali"
                         value="{{ old('tanggal_kembali') }}">
                     @error('tanggal_kembali')
