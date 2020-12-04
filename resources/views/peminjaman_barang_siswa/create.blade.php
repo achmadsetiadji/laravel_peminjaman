@@ -16,6 +16,17 @@
 
                 <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
 
+                @if (auth()->user()->role_id == '1')
+                <div class="form-group">
+                    <label for="nama_peminjam">Nama Peminjam</label>
+                    <input type="text" class="form-control @error('nama_peminjam') is-invalid @enderror" id="nama_peminjam"
+                        placeholder="Masukan Nama Peminjam" name="nama_peminjam"
+                        value="{{ old('nama_peminjam') }}">
+                    @error('nama_peminjam')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                @elseif (auth()->user()->role_id == '4')
                 <div class="form-group">
                     <label for="nama_peminjam">Nama Peminjam</label>
                     <input type="text" class="form-control @error('nama_peminjam') is-invalid @enderror" id="nama_peminjam"
@@ -26,6 +37,7 @@
                     @enderror
                     <input type="hidden" id="nama_peminjam" name="nama_peminjam" value="{{ Auth::user()->name }}">
                 </div>
+                @endif
 
                 @if (auth()->user()->nipd == null)
                     <div class="form-group">
@@ -147,7 +159,7 @@
                     @enderror
                 </div>
 
-                <input type="hidden" name="status" id="status" value="Dipinjam">
+                <input type="hidden" name="status" id="status" value="Pending">
 
                 <div class="form-group">
                     <button style="width: 15%;" class="btn btn-small btn-success btn-block" type="submit"><i

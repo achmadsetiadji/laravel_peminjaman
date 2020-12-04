@@ -38,22 +38,38 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="row">
-                <div class="col-md-7">
+            <div class="row ">
+                <div class="col-md-4 mt-2">
                     <a href="/peminjaman_barang_guru/create" class="text-primary">
                         <i class="fas fa-plus"><span class="ml-2">Tambah Peminjaman Barang Guru</span></i>
                     </a>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-8">
                     @if (auth()->user()->role_id == "1")
-                    <div class="col-lg-8">
-                    <form class="form-inline" method="GET" action="peminjaman_barang_guru_sort">
-                            <div class="form-group">
-                                <label for="sort_month" class="mr-2">Sort by Month:</label>
-                                <input type="month" name="sortMonth" class="form-control mr-3">
-                                <button type="submit" class="btn btn-primary">Cari</button>
-                            </div>
-                        </form>
+                    <div class="row">
+                        <div class="col-lg-4" style="margin-left: -50px">
+                            <form class="form-inline ml-3" method="GET" action="peminjaman_barang_guru_sort_year">
+                                <div class="form-group">
+                                    <label for="sort_year" class="mr-2">Sort by Year:</label>
+                                        <select class="custom-select mr-3" name="sortYear" id="inputGroupSelect02">
+                                            <option selected value="">Choose...</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                        </select>
+                                    <button type="submit" class="btn btn-primary">Cari</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-4" style="margin-left: 100px">
+                            <form class="form-inline" method="GET" action="peminjaman_barang_guru_sort_month">
+                                <div class="form-group">
+                                    <label for="sort_month" class="mr-2">Sort by Month:</label>
+                                    <input type="month" name="sortMonth" class="form-control mr-3">
+                                    <button type="submit" class="btn btn-primary">Cari</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     @endif
                 </div>
@@ -102,29 +118,52 @@
                                     <td class="text-center">{{ $peminjamanBarangGuru->tanggal_pinjam }}</td>
                                     <td class="text-center">{{ $peminjamanBarangGuru->tanggal_kembali }}</td>
                                     <td class="text-center">
-                                        @if($peminjamanBarangGuru->status == 'Dipinjam')
-                                            <span class="badge badge-pill badge-warning">Dipinjam</span>
+                                        @if($peminjamanBarangGuru->status == 'Pending')
+                                            <span class="badge badge-pill badge-warning">Pending</span>
+                                        @elseif ($peminjamanBarangGuru->status == 'Dipinjam')
+                                            <span class="badge badge-pill badge-primary">Dipinjam</span>
                                         @else
                                             <span class="badge badge-pill badge-success">Dikembalikan</span>
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <form action="/peminjaman_barang_guru/{{ $peminjamanBarangGuru->id }}"
-                                            method="POST" class="d-inline">
-                                            @method('put')
-                                            @csrf
-                                            <button type="submit" class="btn btn-small text-success">
-                                                <i class=" fa fa-check-circle">Dikembalikan</i>
+                                        <div class="dropdown mb-4">
+                                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                Action
                                             </button>
-                                        </form>
-                                        <form action="/peminjaman_barang_guru/{{ $peminjamanBarangGuru->id }}"
-                                            method="POST" class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="btn btn-small text-danger">
-                                                <i class=" fa fa-trash"></i><span class="ml-2">Delete</span>
-                                            </button>
-                                        </form>
+                                            <div class="dropdown-menu animated--fade-in"
+                                                aria-labelledby="dropdownMenuButton">
+                                                @if ($peminjamanBarangGuru->status == 'Pending')
+                                                    <form action="/peminjaman_barang_guru/{{ $peminjamanBarangGuru->id }}"
+                                                        method="POST" class="d-inline">
+                                                        @method('put')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-small text-info">
+                                                            <i class=" fa fa-info-circle"></i><span class="ml-2">Terima</span>
+                                                        </button>
+                                                    </form>
+                                                @elseif ($peminjamanBarangGuru->status == 'Dipinjam' or 'Dikembalikan')
+                                                    <form action="/peminjaman_barang_guru/{{ $peminjamanBarangGuru->id }}"
+                                                        method="POST" class="d-inline">
+                                                        @method('put')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-small text-success">
+                                                            <i class=" fa fa-check-circle"></i><span class="ml-2">Dikembalikan</span>
+                                                        </button>
+                                                    </form>
+                                                    <form action="/peminjaman_barang_guru/{{ $peminjamanBarangGuru->id }}"
+                                                        method="POST" class="d-inline">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-small text-danger">
+                                                            <i class=" fa fa-trash"></i><span class="ml-2">Delete</span>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -136,9 +175,9 @@
                             <tr>
                                 <th scope="col" class="text-center">No.</th>
                                 <th scope="col" class="text-center">Kode Peminjaman</th>
-                                <th scope="col" class="text-center">Nama Peminjam</th>
-                                <th scope="col" class="text-center">NIK</th>
-                                <th scope="col" class="text-center">Jabatan</th>
+                                {{-- <th scope="col" class="text-center">Nama Peminjam</th> --}}
+                                {{-- <th scope="col" class="text-center">NIK</th> --}}
+                                {{-- <th scope="col" class="text-center">Jabatan</th> --}}
                                 <th scope="col" class="text-center">Barang</th>
                                 <th scope="col" class="text-center">Tanggal Pinjam</th>
                                 <th scope="col" class="text-center">Tanggal Kembali</th>
@@ -154,13 +193,13 @@
                                             PMBG-{{ $peminjamanBarangGuru->id }}
                                         </a>
                                     </td>
-                                    <td class="text-center">{{ $peminjamanBarangGuru->nama_peminjam }}</td>
-                                    <td class="text-center">{{ $peminjamanBarangGuru->nik }}</td>
-                                    <td class="text-center">
+                                    {{-- <td class="text-center">{{ $peminjamanBarangGuru->nama_peminjam }}</td> --}}
+                                    {{-- <td class="text-center">{{ $peminjamanBarangGuru->nik }}</td> --}}
+                                    {{-- <td class="text-center">
                                         @foreach($peminjamanBarangGuru->Jabatan as $item)
                                             {{ $item->nama_jabatan }}
                                         @endforeach
-                                    </td>
+                                    </td> --}}
                                     <td class="text-center">
                                         @foreach($peminjamanBarangGuru->Barang as $item)
                                             {{ $item->nama_barang }}
@@ -169,8 +208,10 @@
                                     <td class="text-center">{{ $peminjamanBarangGuru->tanggal_pinjam }}</td>
                                     <td class="text-center">{{ $peminjamanBarangGuru->tanggal_kembali }}</td>
                                     <td class="text-center">
-                                        @if($peminjamanBarangGuru->status == 'Dipinjam')
-                                            <span class="badge badge-pill badge-warning">Dipinjam</span>
+                                        @if($peminjamanBarangGuru->status == 'Pending')
+                                            <span class="badge badge-pill badge-warning">Pending</span>
+                                        @elseif ($peminjamanBarangGuru->status == 'Dipinjam')
+                                            <span class="badge badge-pill badge-primary">Dipinjam</span>
                                         @else
                                             <span class="badge badge-pill badge-success">Dikembalikan</span>
                                         @endif

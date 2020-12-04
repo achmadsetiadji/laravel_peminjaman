@@ -40,8 +40,8 @@ class HomeController extends Controller
         return view('home', [
             //admin
             'count_admin' => User::where('role_id', '1')->count(),
-            'count_siswa' => User::where('role_id', '3')->count(),
-            'count_guru' => User::where('role_id', '4')->count(),
+            'count_siswa' => User::where('role_id', '4')->count(),
+            'count_guru' => User::where('role_id', '3')->count(),
             'count_barang' => Barang::all()->count(),
             'count_kunci' => Kunci::all()->count(),
             'count_kelas' => KelasRuang::all()->count(),

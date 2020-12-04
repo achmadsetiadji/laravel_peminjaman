@@ -10,27 +10,27 @@ use App\Exports\peminjamanKunciSiswaExport;
 
 class ExcelController extends Controller
 {
-    public function peminjamanBarangSiswaexcel()
-    {
-        $nama_file = 'laporan_peminjaman_barang_siswa_' . date('Y-m-d_H-i-s') . '.xlsx';
-        return Excel::download(new peminjamanBarangSiswaExport, $nama_file);
-    }
-
     public function peminjamanBarangGuruexcel()
     {
-        $nama_file = 'laporan_peminjaman_barang_guru_' . date('Y-m-d_H-i-s') . '.xlsx';
+        $nama_file = 'laporan peminjaman barang guru - ' . date('Y-m-d_H-i-s') . '.xlsx';
         return Excel::download(new peminjamanBarangGuruExport, $nama_file);
     }
 
-    public function peminjamanKunciSiswaexcel()
+    public function peminjamanBarangSiswaexcel()
     {
-        $nama_file = 'laporan_peminjaman_kunci_siswa_' . date('Y-m-d_H-i-s') . '.xlsx';
-        return Excel::download(new peminjamanKunciSiswaExport, $nama_file);
+        $nama_file = 'laporan peminjaman barang siswa - ' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new peminjamanBarangSiswaExport, $nama_file);
     }
 
     public function peminjamanKunciGuruexcel()
     {
-        $nama_file = 'laporan_peminjaman_kunci_guru_' . date('Y-m-d_H-i-s') . '.xlsx';
+        $nama_file = 'laporan peminjaman kunci guru - ' . date('Y-m-d_H-i-s') . '.xlsx';
         return Excel::download(new peminjamanKunciGuruExport, $nama_file);
+    }
+
+    public function peminjamanKunciSiswaexcel()
+    {
+        $nama_file = 'laporan peminjaman kunci siswa - ' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new peminjamanKunciSiswaExport, $nama_file);
     }
 }

@@ -20,8 +20,8 @@ class CreatePeminjamanKunciSiswasTable extends Migration
             $table->string('nipd')->nullable();
             $table->integer('kunci_id');
             $table->integer('kelas_id');
-            $table->string('tanggal_pinjam');
-            $table->string('tanggal_kembali');
+            $table->dateTime('tanggal_pinjam');
+            $table->dateTime('tanggal_kembali');
             $table->string('status');
             $table->timestamps();
         });

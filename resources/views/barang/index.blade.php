@@ -40,6 +40,7 @@
                         <tr>
                             <th scope="col" class="text-center">No.</th>
                             <th scope="col" class="text-center">Kategori Barang</th>
+                            <th scope="col" class="text-center">Kode Barang</th>
                             <th scope="col" class="text-center">Nama Barang</th>
                             <th scope="col" class="text-center">Kondisi Barang</th>
                             <th scope="col" class="text-center">Tahun Pembelian Barang</th>
@@ -56,6 +57,7 @@
                                     {{ $item->nama_kategori }}
                                 @endforeach
                             </td>
+                            <td class="text-center">{{ $barang->kode_barang }}</td>
                             <td class="text-center">{{ $barang->nama_barang }}</td>
                             <td class="text-center">{{ $barang->kondisi_barang }}</td>
                             <td class="text-center">{{ $barang->tahun_pembelian }}</td>

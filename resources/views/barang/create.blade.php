@@ -34,6 +34,16 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="kode_barang">Kode Barang</label>
+                    <input type="number" class="form-control @error('kode_barang') is-invalid @enderror" id="kode_barang"
+                        placeholder="Masukan Kode Barang" name="kode_barang"
+                        value="{{ old('kode_barang') }}">
+                    @error('kode_barang')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <label for="nama_barang">Nama Barang</label>
                     <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang"
                         placeholder="Masukan Nama Barang" name="nama_barang"

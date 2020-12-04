@@ -13,7 +13,7 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Laporan Data Peminjaman Kunci Siswa</h1>
+            <h1 class="h3 mb-0 text-gray-800 text-center">Laporan Data Peminjaman Kunci Siswa</h1>
         </div>
 
         <!-- DataTales Example -->
@@ -24,37 +24,37 @@
                     <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col" class="text-center">No.</th>
-                                <th scope="col" class="text-center">Kode Peminjaman</th>
-                                <th scope="col" class="text-center">Nama Peminjam</th>
-                                <th scope="col" class="text-center">NIPD</th>
-                                <th scope="col" class="text-center">Kunci Ruangan</th>
-                                <th scope="col" class="text-center">Kelas</th>
-                                <th scope="col" class="text-center">Tanggal Pinjam</th>
-                                <th scope="col" class="text-center">Tanggal Kembali</th>
-                                <th scope="col" class="text-center">Status</th>
+                                <th scope="col" class="text-center" style="font-size: 10px">No.</th>
+                                <th scope="col" class="text-center" style="font-size: 10px">Kode Peminjaman</th>
+                                <th scope="col" class="text-center" style="font-size: 10px">Nama Peminjam</th>
+                                <th scope="col" class="text-center" style="font-size: 10px">NIPD</th>
+                                <th scope="col" class="text-center" style="font-size: 10px">Kunci Ruangan</th>
+                                <th scope="col" class="text-center" style="font-size: 10px">Kelas</th>
+                                <th scope="col" class="text-center" style="font-size: 10px">Tanggal Pinjam</th>
+                                <th scope="col" class="text-center" style="font-size: 10px">Tanggal Kembali</th>
+                                <th scope="col" class="text-center" style="font-size: 10px">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($peminjamankuncisiswas as $peminjamanKunciSiswa)
                                 <tr>
-                                    <th scope="row" class="text-center"><strong>{{ $loop->iteration }}</strong></th>
-                                    <td class="text-center">PMKS-{{ $peminjamanKunciSiswa->id }}</td>
-                                    <td class="text-center">{{ $peminjamanKunciSiswa->nama_peminjam }}</td>
-                                    <td class="text-center">{{ $peminjamanKunciSiswa->nipd }}</td>
-                                    <td class="text-center">
+                                    <th scope="row" class="text-center" style="font-size: 10px"><strong>{{ $loop->iteration }}</strong></th>
+                                    <td class="text-center" style="font-size: 10px">PMKS-{{ $peminjamanKunciSiswa->id }}</td>
+                                    <td class="text-center" style="font-size: 10px">{{ $peminjamanKunciSiswa->nama_peminjam }}</td>
+                                    <td class="text-center" style="font-size: 10px">{{ $peminjamanKunciSiswa->nipd }}</td>
+                                    <td class="text-center" style="font-size: 10px">
                                         @foreach($peminjamanKunciSiswa->Kunci as $item)
                                             {{ $item->nama_kunci }}
                                         @endforeach
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center" style="font-size: 10px">
                                         @foreach($peminjamanKunciSiswa->Kelas as $item)
                                             {{ $item->ruang_kelas }}
                                         @endforeach
                                     </td>
-                                    <td class="text-center">{{ $peminjamanKunciSiswa->tanggal_pinjam }}</td>
-                                    <td class="text-center">{{ $peminjamanKunciSiswa->tanggal_kembali }}</td>
-                                    <td class="text-center">
+                                    <td class="text-center" style="font-size: 10px">{{ $peminjamanKunciSiswa->tanggal_pinjam }}</td>
+                                    <td class="text-center" style="font-size: 10px">{{ $peminjamanKunciSiswa->tanggal_kembali }}</td>
+                                    <td class="text-center" style="font-size: 10px">
                                         @if($peminjamanKunciSiswa->status == 'Dipinjam')
                                             Dipinjam
                                         @else

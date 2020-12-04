@@ -20,8 +20,8 @@ class CreatePeminjamanBarangGurusTable extends Migration
             $table->string('nik')->nullable();
             $table->string('jabatan_id');
             $table->integer('barang_id');
-            $table->string('tanggal_pinjam');
-            $table->string('tanggal_kembali');
+            $table->dateTime('tanggal_pinjam');
+            $table->dateTime('tanggal_kembali');
             $table->string('status');
             $table->timestamps();
         });

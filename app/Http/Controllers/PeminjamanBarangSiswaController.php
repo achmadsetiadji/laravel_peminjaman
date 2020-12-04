@@ -91,7 +91,7 @@ class PeminjamanBarangSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PeminjamanBarangSiswa $peminjamanBarangSiswa)
+    public function edit($id)
     {
         //
     }
@@ -105,11 +105,19 @@ class PeminjamanBarangSiswaController extends Controller
      */
     public function update(Request $request, PeminjamanBarangSiswa $peminjamanBarangSiswa)
     {
-        PeminjamanBarangSiswa::where('id', $peminjamanBarangSiswa->id)
-            ->update([
-                'status' => 'Dikembalikan',
-            ]);
-        return redirect('/peminjaman_barang_siswa')->with('status', 'Barang Telah Dikembalikan!');
+        if ($peminjamanBarangSiswa->status == "Pending") {
+            PeminjamanBarangSiswa::where('id', $peminjamanBarangSiswa->id)
+                ->update([
+                    'status' => 'Dipinjam',
+                ]);
+            return redirect('/peminjaman_barang_siswa')->with('status', 'Barang Telah Dipinjam!');
+        } else {
+            PeminjamanBarangSiswa::where('id', $peminjamanBarangSiswa->id)
+                ->update([
+                    'status' => 'Dikembalikan',
+                ]);
+            return redirect('/peminjaman_barang_siswa')->with('status', 'Barang Telah Dikembalikan!');
+        }
     }
 
     /**
@@ -128,6 +136,14 @@ class PeminjamanBarangSiswaController extends Controller
     {
         $date = $request->sortMonth;
         session(['sortMonthBarangSiswa' => $date]);
+        $peminjamanbarangsiswas = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
+        return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas'));
+    }
+
+    public function sortByYear(Request $request)
+    {
+        $date = $request->sortYear;
+        session(['sortYearBarangSiswa' => $date]);
         $peminjamanbarangsiswas = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas'));
     }

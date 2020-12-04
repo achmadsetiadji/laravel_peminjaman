@@ -29,7 +29,7 @@
             </div>
         </li>
 
-        @if (auth()->user()->role_id == '1')
+        {{-- @if (auth()->user()->role_id == '1')
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
@@ -59,7 +59,7 @@
                                     @csrf
                                     <button type="submit" class="btn btn-small text-success">
                                         <span class="badge badge-pill badge-success">Approved
-                                            <i class=" fa fa-check-circle"></i>
+                                            <i class=" fa fa-check"></i>
                                         </span>
                                     </button>
                                 </form>
@@ -68,7 +68,7 @@
                     </a>
                 </div>
             </li>
-        @endif
+        @endif --}}
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -76,15 +76,14 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                <img class="img-responsive img-fluid rounded-circle" width="40px"
-                    src="{{ asset('image/upload/avatar/'.Auth::user()->avatar) }}" alt="">
-                {{-- <i class="fas fa-user-circle fa-2x"></i> --}}
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><strong>{{ Auth::user()->name }}</strong></span>
+                <img class="img-responsive img-fluid rounded-circle" width="40px" src="{{ asset('image/upload/avatar/'.Auth::user()->avatar) }}" alt="">
             </a>
+            
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="/user/">
-                    <i class="far fa-user-circle fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <i class="fas fa-user-circle fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

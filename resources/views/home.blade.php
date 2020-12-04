@@ -11,7 +11,6 @@
             {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
             </a> --}}
-
     </div>
     <!-- Content Row -->
     <div class="row">
@@ -73,7 +72,7 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $count_kelas }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-user fa-2x text-gray-300"></i>
+                                <i class="fas fa-school fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -112,7 +111,7 @@
                 </div>
             </div>
 
-            <div class="col-12 mt-4">
+            {{-- <div class="col-12 mt-4">
                 <h1 class="h3 mb-0 text-gray-800">Data Peminjaman Siswa</h1>
                 <hr>
             </div>
@@ -312,7 +311,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         @else
             @if (auth()->user()->role_id == "4")
                 <div class="col-xl-6 col-md-6 mb-4">
@@ -522,4 +521,11 @@
     </div>
 </div>
 <!-- /.container-fluid -->
+
+@section('js')
+<!-- Page level custom scripts -->
+<script type="text/javascript" src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/demo/chart-area-demo.js')}}"></script>
+@endsection
+
 @endsection

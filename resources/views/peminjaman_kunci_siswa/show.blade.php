@@ -30,8 +30,10 @@
                         <li class="list-group-item">Tanggal Peminjaman : {{$peminjamanKunciSiswa->tanggal_pinjam}}</li>
                         <li class="list-group-item">Tanggal Pengembalian : {{$peminjamanKunciSiswa->tanggal_kembali}}</li>
                         <li class="list-group-item">Status Pinjam :
-                            @if($peminjamanKunciSiswa->status == 'Dipinjam')
-                                <span class="badge badge-pill badge-warning">Dipinjam</span>
+                            @if($peminjamanKunciSiswa->status == 'Pending')
+                                <span class="badge badge-pill badge-warning">Pending</span>
+                            @elseif ($peminjamanKunciSiswa->status == 'Dipinjam')
+                                <span class="badge badge-pill badge-primary">Dipinjam</span>
                             @else
                                 <span class="badge badge-pill badge-success">Dikembalikan</span>
                             @endif

@@ -40,6 +40,7 @@ class BarangController extends Controller
     {
         $request->validate([
             'kategori_id' => 'required',
+            'kode_barang' => 'required',
             'nama_barang' => 'required',
             'kondisi_barang' => 'required',
             'tahun_pembelian' => 'required',
@@ -52,6 +53,7 @@ class BarangController extends Controller
 
         Barang::create([
             'kategori_id' => $request->kategori_id,
+            'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
             'kondisi_barang' => $request->kondisi_barang,
             'tahun_pembelian' => $request->tahun_pembelian,
@@ -94,6 +96,7 @@ class BarangController extends Controller
     {
         $request->validate([
             'kategori_id' => 'required',
+            'kode_barang' => 'required',
             'nama_barang' => 'required',
             'kondisi_barang' => 'required',
             'tahun_pembelian' => 'required',
@@ -107,6 +110,7 @@ class BarangController extends Controller
         Barang::where('id', $barang->id)
             ->update([
                 'kategori_id' => $request->kategori_id,
+                'kode_barang' => $request->kode_barang,
                 'nama_barang' => $request->nama_barang,
                 'kondisi_barang' => $request->kondisi_barang,
                 'tahun_pembelian' => $request->tahun_pembelian,

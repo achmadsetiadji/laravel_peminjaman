@@ -82,7 +82,7 @@ class PeminjamanKunciSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PeminjamanKunciSiswa $peminjamanKunciSiswa)
+    public function edit($id)
     {
         //
     }
@@ -96,11 +96,19 @@ class PeminjamanKunciSiswaController extends Controller
      */
     public function update(Request $request, PeminjamanKunciSiswa $peminjamanKunciSiswa)
     {
-        PeminjamanKunciSiswa::where('id', $peminjamanKunciSiswa->id)
+        if ($peminjamanKunciSiswa->status == "Pending") {
+            PeminjamanKunciSiswa::where('id', $peminjamanKunciSiswa->id)
+            ->update([
+                'status' => 'Dipinjam',
+            ]);
+            return redirect('/peminjaman_kunci_siswa')->with('status', 'Kunci Telah Dipinjam!');
+        } else {
+            PeminjamanKunciSiswa::where('id', $peminjamanKunciSiswa->id)
             ->update([
                 'status' => 'Dikembalikan',
             ]);
-        return redirect('/peminjaman_kunci_siswa')->with('status', 'Kunci Telah Dikembalikan!');
+            return redirect('/peminjaman_kunci_siswa')->with('status', 'Kunci Telah Dikembalikan!');
+        }
     }
 
     /**
@@ -119,6 +127,14 @@ class PeminjamanKunciSiswaController extends Controller
     {
         $date = $request->sortMonth;
         session(['sortMonthKunciSiswa' => $date]);
+        $peminjamankuncisiswas = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
+        return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas'));
+    }
+
+    public function sortByYear(Request $request)
+    {
+        $date = $request->sortYear;
+        session(['sortYearKunciSiswa' => $date]);
         $peminjamankuncisiswas = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas'));
     }

@@ -43,7 +43,6 @@ Route::get('/peminjamanKunciSiswaexcel', 'ExcelController@peminjamanKunciSiswaex
 Route::get('/peminjamanBarangGuruexcel', 'ExcelController@peminjamanBarangGuruexcel')->name('peminjamanBarangGuruexcel');
 Route::get('/peminjamanKunciGuruexcel', 'ExcelController@peminjamanKunciGuruexcel')->name('peminjamanKunciGuruexcel');
 
-
 //data master
 Route::resource('kategori_barang', 'KategoriBarangController');
 Route::resource('kelas_ruang', 'KelasRuangController');
@@ -62,12 +61,20 @@ Route::resource('peminjaman_barang_guru', 'PeminjamanBarangGuruController');
 Route::resource('peminjaman_kunci_guru', 'PeminjamanKunciGuruController');
 
 //sort by month peminjaman guru
-Route::get('peminjaman_barang_guru_sort', 'PeminjamanBarangGuruController@sortByMonth');
-Route::get('peminjaman_kunci_guru_sort', 'PeminjamanKunciGuruController@sortByMonth');
+Route::get('peminjaman_barang_guru_sort_month', 'PeminjamanBarangGuruController@sortByMonth');
+Route::get('peminjaman_kunci_guru_sort_month', 'PeminjamanKunciGuruController@sortByMonth');
 
 //sort by month peminjaman siswa
-Route::get('peminjaman_barang_siswa_sort', 'PeminjamanBarangSiswaController@sortByMonth');
-Route::get('peminjaman_kunci_siswa_sort', 'PeminjamanKunciSiswaController@sortByMonth');
+Route::get('peminjaman_barang_siswa_sort_month', 'PeminjamanBarangSiswaController@sortByMonth');
+Route::get('peminjaman_kunci_siswa_sort_month', 'PeminjamanKunciSiswaController@sortByMonth');
+
+//sort by year peminjaman guru
+Route::get('peminjaman_barang_guru_sort_year', 'PeminjamanBarangGuruController@sortByYear');
+Route::get('peminjaman_kunci_guru_sort_year', 'PeminjamanKunciGuruController@sortByYear');
+
+//sort by year peminjaman siswa
+Route::get('peminjaman_barang_siswa_sort_year', 'PeminjamanBarangSiswaController@sortByYear');
+Route::get('peminjaman_kunci_siswa_sort_year', 'PeminjamanKunciSiswaController@sortByYear');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

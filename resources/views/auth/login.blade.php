@@ -73,15 +73,6 @@
                                             @enderror
                                         </div>
 
-                                        {{-- <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" name="remember"
-                                                    id="remember"
-                                                    {{ old('remember') ? 'checked' : '' }}>
-                                                <label class="custom-control-label" for="customCheck">Remember Me</label>
-                                            </div>
-                                        </div> --}}
-
                                         <button class="btn btn-user btn-block" style="background-color: #536DFE">
                                             <span class="text-white">Login</span>
                                         </button>

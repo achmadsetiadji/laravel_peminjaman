@@ -83,7 +83,7 @@ class PeminjamanKunciGuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PeminjamanKunciGuru $peminjamanKunciGuru)
+    public function edit($id)
     {
         //
     }
@@ -97,11 +97,19 @@ class PeminjamanKunciGuruController extends Controller
      */
     public function update(Request $request, PeminjamanKunciGuru $peminjamanKunciGuru)
     {
-        PeminjamanKunciGuru::where('id', $peminjamanKunciGuru->id)
+        if ($peminjamanKunciGuru->status == "Pending") {
+            PeminjamanKunciGuru::where('id', $peminjamanKunciGuru->id)
+            ->update([
+                'status' => 'Dipinjam',
+            ]);
+            return redirect('/peminjaman_kunci_guru')->with('status', 'Barang Telah Dipinjam!');
+        } else {
+            PeminjamanKunciGuru::where('id', $peminjamanKunciGuru->id)
             ->update([
                 'status' => 'Dikembalikan',
             ]);
-        return redirect('/peminjaman_kunci_guru')->with('status', 'Barang Telah Dikembalikan!');
+            return redirect('/peminjaman_kunci_guru')->with('status', 'Barang Telah Dikembalikan!');
+        }
     }
 
     /**
@@ -120,6 +128,14 @@ class PeminjamanKunciGuruController extends Controller
     {
         $date = $request->sortMonth;
         session(['sortMonthKunciGuru' => $date]);
+        $peminjamankuncigurus = PeminjamanKunciGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
+        return view('peminjaman_kunci_guru/index', compact('peminjamankuncigurus'));
+    }
+
+    public function sortByYear(Request $request)
+    {
+        $date = $request->sortYear;
+        session(['sortYearKunciGuru' => $date]);
         $peminjamankuncigurus = PeminjamanKunciGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         return view('peminjaman_kunci_guru/index', compact('peminjamankuncigurus'));
     }

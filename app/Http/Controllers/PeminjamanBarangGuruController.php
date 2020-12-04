@@ -82,7 +82,7 @@ class PeminjamanBarangGuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PeminjamanBarangGuru $peminjamanBarangGuru)
+    public function edit($id)
     {
         //
     }
@@ -96,11 +96,19 @@ class PeminjamanBarangGuruController extends Controller
      */
     public function update(Request $request, PeminjamanBarangGuru $peminjamanBarangGuru)
     {
-        PeminjamanBarangGuru::where('id', $peminjamanBarangGuru->id)
-            ->update([
-                'status' => 'Dikembalikan',
-            ]);
-        return redirect('/peminjaman_barang_guru')->with('status', 'Barang Telah Dikembalikan!');
+        if ($peminjamanBarangGuru->status == "Pending") {
+            PeminjamanBarangGuru::where('id', $peminjamanBarangGuru->id)
+                ->update([
+                    'status' => 'Dipinjam',
+                ]);
+            return redirect('/peminjaman_barang_guru')->with('status', 'Barang Telah Dipinjam!');
+        } else {
+            PeminjamanBarangGuru::where('id', $peminjamanBarangGuru->id)
+                ->update([
+                    'status' => 'Dikembalikan',
+                ]);
+            return redirect('/peminjaman_barang_guru')->with('status', 'Barang Telah Dikembalikan!');
+        }
     }
 
     /**
@@ -120,6 +128,14 @@ class PeminjamanBarangGuruController extends Controller
         $date = $request->sortMonth;
         session(['sortMonthBarangGuru' => $date]);
         $peminjamanbaranggurus = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE' ,'%'.$date.'%')->get();
+        return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus'));
+    }
+
+    public function sortByYear(Request $request)
+    {
+        $date = $request->sortYear;
+        session(['sortYearBarangGuru' => $date]);
+        $peminjamanbaranggurus = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
         return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus'));
     }
 }
