@@ -38,24 +38,26 @@
                         <tbody>
                             @foreach($peminjamankuncisiswas as $peminjamanKunciSiswa)
                                 <tr>
-                                    <th scope="row" class="text-center" style="font-size: 10px"><strong>{{ $loop->iteration }}</strong></th>
-                                    <td class="text-center" style="font-size: 10px">PMKS-{{ $peminjamanKunciSiswa->id }}</td>
-                                    <td class="text-center" style="font-size: 10px">{{ $peminjamanKunciSiswa->nama_peminjam }}</td>
-                                    <td class="text-center" style="font-size: 10px">{{ $peminjamanKunciSiswa->nipd }}</td>
-                                    <td class="text-center" style="font-size: 10px">
+                                    <th scope="row" class="text-center" style="font-size: 9px"><strong>{{ $loop->iteration }}</strong></th>
+                                    <td class="text-center" style="font-size: 9px">PMKS-{{ $peminjamanKunciSiswa->id }}</td>
+                                    <td class="text-center" style="font-size: 9px">{{ $peminjamanKunciSiswa->nama_peminjam }}</td>
+                                    <td class="text-center" style="font-size: 9px">{{ $peminjamanKunciSiswa->nipd }}</td>
+                                    <td class="text-center" style="font-size: 9px">
                                         @foreach($peminjamanKunciSiswa->Kunci as $item)
                                             {{ $item->nama_kunci }}
                                         @endforeach
                                     </td>
-                                    <td class="text-center" style="font-size: 10px">
+                                    <td class="text-center" style="font-size: 9px">
                                         @foreach($peminjamanKunciSiswa->Kelas as $item)
                                             {{ $item->ruang_kelas }}
                                         @endforeach
                                     </td>
-                                    <td class="text-center" style="font-size: 10px">{{ $peminjamanKunciSiswa->tanggal_pinjam }}</td>
-                                    <td class="text-center" style="font-size: 10px">{{ $peminjamanKunciSiswa->tanggal_kembali }}</td>
-                                    <td class="text-center" style="font-size: 10px">
-                                        @if($peminjamanKunciSiswa->status == 'Dipinjam')
+                                    <td class="text-center" style="font-size: 9px">{{ $peminjamanKunciSiswa->tanggal_pinjam }}</td>
+                                    <td class="text-center" style="font-size: 9px">{{ $peminjamanKunciSiswa->tanggal_kembali }}</td>
+                                    <td class="text-center" style="font-size: 9px">
+                                        @if($peminjamanKunciSiswa->status == 'Pending')
+                                            Pending
+                                        @elseif ($peminjamanKunciSiswa->status == 'Dipinjam')
                                             Dipinjam
                                         @else
                                             Dikembalikan

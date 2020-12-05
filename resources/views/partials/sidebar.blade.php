@@ -5,7 +5,7 @@
     <a class="sidebar-brand d-flex align-items-center justify-content-center"
         href="{{ url('/home') }}">
         <img src="{{ asset('image/landingPage/shipping.png') }}" width="50" height="50" alt="">
-        <div class="sidebar-brand-text mx-3">SARPRAS</div>
+        <div class="sidebar-brand-text mx-3">SIPPS</div>
     </a>
 
     <!-- Divider -->
@@ -26,7 +26,7 @@
         Action
     </div>
 
-    @if (auth()->user()->role_id == "1")
+    @if (Auth::user()->role_id == "1")
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

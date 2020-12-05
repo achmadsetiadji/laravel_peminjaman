@@ -22,7 +22,10 @@ class PeminjamanBarangSiswaController extends Controller
     {
         if (Auth::user()->role_id == "1") {
             $peminjamanbarangsiswas = PeminjamanBarangSiswa::all();
-            return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas'));
+            $count_peminjaman_barang_siswa_pending = PeminjamanBarangSiswa::where('status', 'Pending')->count();
+            $count_peminjaman_barang_siswa_pinjam  = PeminjamanBarangSiswa::where('status', 'Dipinjam')->count();
+            $count_peminjaman_barang_siswa_kembali = PeminjamanBarangSiswa::where('status', 'Dikembalikan')->count();
+            return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas', 'count_peminjaman_barang_siswa_pending', 'count_peminjaman_barang_siswa_pinjam', 'count_peminjaman_barang_siswa_kembali'));
         } else {
             $peminjamanbarangsiswas = PeminjamanBarangSiswa::where('user_id', Auth::user()->id)->get();
             return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas'));
@@ -137,7 +140,10 @@ class PeminjamanBarangSiswaController extends Controller
         $date = $request->sortMonth;
         session(['sortMonthBarangSiswa' => $date]);
         $peminjamanbarangsiswas = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
-        return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas'));
+        $count_peminjaman_barang_siswa_pending = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Pending')->count();
+        $count_peminjaman_barang_siswa_pinjam  = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dipinjam')->count();
+        $count_peminjaman_barang_siswa_kembali = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dikembalikan')->count();
+        return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas', 'count_peminjaman_barang_siswa_pending', 'count_peminjaman_barang_siswa_pinjam', 'count_peminjaman_barang_siswa_kembali'));
     }
 
     public function sortByYear(Request $request)
@@ -145,6 +151,9 @@ class PeminjamanBarangSiswaController extends Controller
         $date = $request->sortYear;
         session(['sortYearBarangSiswa' => $date]);
         $peminjamanbarangsiswas = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
-        return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas'));
+        $count_peminjaman_barang_siswa_pending = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Pending')->count();
+        $count_peminjaman_barang_siswa_pinjam  = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dipinjam')->count();
+        $count_peminjaman_barang_siswa_kembali = PeminjamanBarangSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dikembalikan')->count();
+        return view('peminjaman_barang_siswa/index', compact('peminjamanbarangsiswas', 'count_peminjaman_barang_siswa_pending', 'count_peminjaman_barang_siswa_pinjam', 'count_peminjaman_barang_siswa_kembali'));
     }
 }

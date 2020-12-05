@@ -12,15 +12,17 @@ use Illuminate\Support\Facades\Auth;
 class PeminjamanKunciSiswaController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+                $* Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         if (Auth::user()->role_id == "1") {
             $peminjamankuncisiswas = PeminjamanKunciSiswa::all();
-            return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas'));
+            $count_peminjaman_kunci_siswa_pending = PeminjamanKunciSiswa::where('status', 'Pending')->count();
+            $count_peminjaman_kunci_siswa_pinjam = PeminjamanKunciSiswa::where('status', 'Dipinjam')->count();
+            $count_peminjaman_kunci_siswa_kembali = PeminjamanKunciSiswa::where('status', 'Dikembalikan')->count();
+            return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas','count_peminjaman_kunci_siswa_pending','count_peminjaman_kunci_siswa_pinjam', 'count_peminjaman_kunci_siswa_kembali'));
         } else {
             $peminjamankuncisiswas = PeminjamanKunciSiswa::where('user_id', Auth::user()->id)->get();
             return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas'));
@@ -128,7 +130,10 @@ class PeminjamanKunciSiswaController extends Controller
         $date = $request->sortMonth;
         session(['sortMonthKunciSiswa' => $date]);
         $peminjamankuncisiswas = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
-        return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas'));
+        $count_peminjaman_kunci_siswa_pending = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Pending')->count();
+        $count_peminjaman_kunci_siswa_pinjam = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dipinjam')->count();
+        $count_peminjaman_kunci_siswa_kembali = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dikembalikan')->count();
+        return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas','count_peminjaman_kunci_siswa_pending','count_peminjaman_kunci_siswa_pinjam', 'count_peminjaman_kunci_siswa_kembali'));
     }
 
     public function sortByYear(Request $request)
@@ -136,6 +141,9 @@ class PeminjamanKunciSiswaController extends Controller
         $date = $request->sortYear;
         session(['sortYearKunciSiswa' => $date]);
         $peminjamankuncisiswas = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
-        return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas'));
+        $count_peminjaman_kunci_siswa_pending = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Pending')->count();
+        $count_peminjaman_kunci_siswa_pinjam = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dipinjam')->count();
+        $count_peminjaman_kunci_siswa_kembali = PeminjamanKunciSiswa::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dikembalikan')->count();
+        return view('peminjaman_kunci_siswa/index', compact('peminjamankuncisiswas','count_peminjaman_kunci_siswa_pending','count_peminjaman_kunci_siswa_pinjam', 'count_peminjaman_kunci_siswa_kembali'));
     }
 }

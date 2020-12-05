@@ -70,7 +70,7 @@
                     <a class="nav-link page-scroll" href="#header">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#services">Services</a>
+                    <a class="nav-link page-scroll" href="#testimonial">Testimonial</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#about">About</a>
@@ -88,7 +88,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="text-container">
-                            <h1><span class="turquoise">SEMINARIAN</span></h1>
+                            <h1><span class="turquoise">SIPPS</span></h1>
                             <h3>Will Provide The Best Service</h3>
                             <p class="p-large">Use Evolo free landing page template to promote your business startup and
                                 generate leads for the offered services</p>
@@ -120,62 +120,6 @@
         </div> <!-- end of header-content -->
     </header> <!-- end of header -->
     <!-- end of header -->
-
-    <!-- Services -->
-    <div id="services" class="cards-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Business Growth Services</h2>
-                    <p class="p-heading p-large">We serve small and medium sized companies in all tech related
-                        industries with high quality growth services which are presented below</p>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                <div class="col-lg-12">
-
-                    <!-- Card -->
-                    <div class="card">
-                        <img class="card-image" src="{{ asset('image/landingPage/services-icon-1.svg') }}"
-                            alt="alternative">
-                        <div class="card-body">
-                            <h4 class="card-title">Market Analysis</h4>
-                            <p>Our team of enthusiastic marketers will analyse and evaluate how your company stacks
-                                against the closest competitors</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <img class="card-image" src="{{ asset('image/landingPage/services-icon-2.svg') }}"
-                            alt="alternative">
-                        <div class="card-body">
-                            <h4 class="card-title">Opportunity Scan</h4>
-                            <p>Once the market analysis process is completed our staff will search for opportunities
-                                that are in reach</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <img class="card-image" src="{{ asset('image/landingPage/services-icon-3.svg') }}"
-                            alt="alternative">
-                        <div class="card-body">
-                            <h4 class="card-title">Action Plan</h4>
-                            <p>With all the information in place you will be presented with an action plan that your
-                                company needs to follow</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of cards-1 -->
-    <!-- end of services -->
-
 
     <!-- Details 1 -->
     <div class="basic-1">
@@ -261,9 +205,10 @@
                 <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-innerc">
-                        <!-- <div class="carousel-item active">
-                                <img class="d-block w-100" src="image/landingPage/admin/1.png" alt="First slide">
-                            </div> -->
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="{{ asset('image/landingPage/admin/1.png') }}"
+                                alt="First slide">
+                        </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="{{ asset('image/landingPage/admin/2.png') }}"
                                 alt="Second slide">
@@ -274,43 +219,16 @@
                         </div>
                         <div class="carousel-item active">
                             <img class="d-block w-100" src="{{ asset('image/landingPage/admin/4.png') }}"
-                                alt="First slide">
+                                alt="Fourth slide">
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="{{ asset('image/landingPage/admin/5.png') }}"
-                                alt="Second slide">
+                                alt="Fifth slide">
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="{{ asset('image/landingPage/admin/6.png') }}"
-                                alt="Third slide">
+                                alt="Sixth slide">
                         </div>
-                        <!-- <div class="carousel-item active">
-                                <img class="d-block w-100" src="image/landingPage/admin/7.png" alt="First slide">
-                            </div> -->
-                        <!-- <div class="carousel-item">
-                                <img class="d-block w-100" src="image/landingPage/admin/8.png" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="image/landingPage/admin/9.png" alt="Third slide">
-                            </div>
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="image/landingPage/admin/10.png" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="image/landingPage/admin/11.png" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="image/landingPage/admin/12.png" alt="Third slide">
-                            </div>
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="image/landingPage/admin/13.png" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="image/landingPage/admin/14.png" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="image/landingPage/admin/15.png" alt="Third slide">
-                            </div> -->
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -432,7 +350,7 @@
 
 
     <!-- Testimonials -->
-    <div class="slider-2">
+    <div class="slider-2" id="testimonial">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -525,14 +443,14 @@
                 <!-- Team Member -->
                 <div class="team-member col-md-1">
                     <div class="image-wrapper">
-                        <img src="{{ asset('image/landingPage/ammar.png') }}" style="width: 100px;"
+                        <img src="{{ asset('image/upload/avatar/users.png') }}" style="width: 100px;"
                             alt="alternative">
                     </div> <!-- end of image-wrapper -->
-                    <p class="p-large"><strong>Ammar Rais Suryawan</strong></p>
-                    <p class="job-title">Software Engineer</p>
+                    <p class="p-large"><strong>Siti Sundari, S,Pd</strong></p>
+                    <p class="job-title">WAKA. Bidang Sarpras</p>
                     <span class="social-icons">
                         <span class="fa-stack">
-                            <a href="https://www.instagram.com/raissrywn/">
+                            <a href="https://www.instagram.com/siti.sundari.54379/">
                                 <i class="fas fa-circle fa-stack-2x instagram"></i>
                                 <i class="fab fa-instagram fa-stack-1x"></i>
                             </a>
@@ -550,14 +468,14 @@
                 <!-- Team Member -->
                 <div class="team-member col-md-1">
                     <div class="image-wrapper">
-                        <img src="{{ asset('image/landingPage/adit.png') }}" style="width: 100px;"
+                        <img src="{{ asset('image/upload/avatar/users.png') }}" style="width: 100px;"
                             alt="alternative">
                     </div> <!-- end of image wrapper -->
-                    <p class="p-large"><strong>Praditya Maualana</strong></p>
-                    <p class="job-title">Software Engineer</p>
+                    <p class="p-large"><strong>Ana Susilowati, S.Pd</strong></p>
+                    <p class="job-title">Sekretaris Pokja Sarpras</p>
                     <span class="social-icons">
                         <span class="fa-stack">
-                            <a href="https://www.instagram.com/praditya.my/">
+                            <a href="https://www.instagram.com/ana_susilowati_tb/">
                                 <i class="fas fa-circle fa-stack-2x instagram"></i>
                                 <i class="fab fa-instagram fa-stack-1x"></i>
                             </a>
@@ -575,14 +493,14 @@
                 <!-- Team Member -->
                 <div class="team-member col-md-1">
                     <div class="image-wrapper">
-                        <img src="{{ asset('image/landingPage/hani.png') }}" style="width: 100px;"
+                        <img src="{{ asset('image/upload/avatar/users.png') }}" style="width: 100px;"
                             alt="alternative">
                     </div> <!-- end of image-wrapper -->
-                    <p class="p-large"><strong>Hani Fatimah</strong></p>
-                    <p class="job-title">Data Statistic</p>
+                    <p class="p-large"><strong>Tety Suryany, S.Pd </strong></p>
+                    <p class="job-title">Penjab Inventaris Sarpras</p>
                     <span class="social-icons">
                         <span class="fa-stack">
-                            <a href="https://www.instagram.com/hnifaah_x/">
+                            <a href="https://www.instagram.com/tettysry/">
                                 <i class="fas fa-circle fa-stack-2x instagram"></i>
                                 <i class="fab fa-instagram fa-stack-1x"></i>
                             </a>
@@ -600,14 +518,14 @@
                 <!-- Team Member -->
                 <div class="team-member col-md-1">
                     <div class="image-wrapper">
-                        <img src="{{ asset('image/landingPage/raid.png') }}" style="width: 100px;"
+                        <img src="{{ asset('image/upload/avatar/users.png') }}" style="width: 100px;"
                             alt="alternative">
                     </div> <!-- end of image wrapper -->
-                    <p class="p-large"><strong>Raid Tammam</strong></p>
-                    <p class="job-title">Data Statistic</p>
+                    <p class="p-large"><strong>Abdul Fatah, SE</strong></p>
+                    <p class="job-title">Penjab Pertamanan dan Keindahan Lingkungan Sekolah</p>
                     <span class="social-icons">
                         <span class="fa-stack">
-                            <a href="https://www.instagram.com/raid_tammam/">
+                            <a href="https://www.instagram.com/abdulbabe/">
                                 <i class="fas fa-circle fa-stack-2x instagram"></i>
                                 <i class="fab fa-instagram fa-stack-1x"></i>
                             </a>
@@ -625,11 +543,11 @@
                 <!-- Team Member -->
                 <div class="team-member col-md-1">
                     <div class="image-wrapper">
-                        <img src="{{ asset('image/landingPage/aji.png') }}" style="width: 100px;"
+                        <img src="{{ asset('image/upload/avatar/users.png') }}" style="width: 100px;"
                             alt="alternative">
                     </div> <!-- end of image wrapper -->
-                    <p class="p-large"><strong>Achmad Setiadji</strong></p>
-                    <p class="job-title">Product Manager</p>
+                    <p class="p-large"><strong>Bayu</strong></p>
+                    <p class="job-title">Toolman Sarpras</p>
                     <span class="social-icons">
                         <span class="fa-stack">
                             <a href="#your-link">
@@ -655,7 +573,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="footer-col">
-                        <h4>About SEMINARIAN</h4>
+                        <h4>About SIPPS</h4>
                         <p class="text-justify">We're passionate about offering some of the best business growth
                             services for startups</p>
                     </div>
@@ -666,8 +584,8 @@
                         <ul class="list-unstyled li-space-lg">
                             <li class="media">
                                 <i class="fas fa-square"></i>
-                                <div class="media-body">Our business partners <a class="turquoise"
-                                        href="#your-link">startupguide.com</a></div>
+                                <div class="media-body">Our partners <a class="turquoise"
+                                        href="https://www.dicoding.com/">Dicoding.com</a></div>
                             </li>
                         </ul>
                     </div>
@@ -710,7 +628,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="p-small">Copyright © 2020 <a href="https://smktarunabhakti.net/">Taruna Bhakti</a> - All
+                <p class="p-small">Copyright © {{Date('Y')}} <a href="https://smktarunabhakti.net/">Taruna Bhakti</a> - All
                         rights reserved</p>
                 </div> <!-- end of col -->
             </div> <!-- enf of row -->

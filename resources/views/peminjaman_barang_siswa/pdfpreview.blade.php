@@ -39,34 +39,36 @@
                     <tbody>
                         @foreach($peminjamanbarangsiswas as $peminjamanBarangSiswa)
                             <tr>
-                                <th scope="row" class="text-center" style="font-size: 10px"><strong>{{ $loop->iteration }}</strong></th>
-                                <td class="text-center" style="font-size: 10px">PMBS-{{ $peminjamanBarangSiswa->id }}</td>
-                                <td class="text-center" style="font-size: 10px">{{ $peminjamanBarangSiswa->nama_peminjam }}</td>
-                                <td class="text-center" style="font-size: 10px">{{ $peminjamanBarangSiswa->nipd }}</td>
-                                <td class="text-center" style="font-size: 10px">
+                                <th scope="row" class="text-center" style="font-size: 9px"><strong>{{ $loop->iteration }}</strong></th>
+                                <td class="text-center" style="font-size: 9px">PMBS-{{ $peminjamanBarangSiswa->id }}</td>
+                                <td class="text-center" style="font-size: 9px">{{ $peminjamanBarangSiswa->nama_peminjam }}</td>
+                                <td class="text-center" style="font-size: 9px">{{ $peminjamanBarangSiswa->nipd }}</td>
+                                <td class="text-center" style="font-size: 9px">
                                     @foreach($peminjamanBarangSiswa->Barang as $item)
                                         {{ $item->nama_barang }}
                                     @endforeach
                                 </td>
-                                <td class="text-center" style="font-size: 10px">
+                                <td class="text-center" style="font-size: 9px">
                                     @foreach($peminjamanBarangSiswa->Guru as $item)
                                         {{ $item->nama_guru }}
                                     @endforeach
                                 </td>
-                                <td class="text-center" style="font-size: 10px">
+                                <td class="text-center" style="font-size: 9px">
                                     @foreach($peminjamanBarangSiswa->Mapel as $item)
                                         {{ $item->nama_mapel }}
                                     @endforeach
                                 </td>
-                                <td class="text-center" style="font-size: 10px">
+                                <td class="text-center" style="font-size: 9px">
                                     @foreach($peminjamanBarangSiswa->Kelas as $item)
                                         {{ $item->ruang_kelas }}
                                     @endforeach
                                 </td>
-                                <td class="text-center" style="font-size: 10px">{{ $peminjamanBarangSiswa->tanggal_pinjam }}</td>
-                                <td class="text-center" style="font-size: 10px">{{ $peminjamanBarangSiswa->tanggal_kembali }}</td>
-                                <td class="text-center" style="font-size: 10px">
-                                    @if($peminjamanBarangSiswa->status == 'Dipinjam')
+                                <td class="text-center" style="font-size: 9px">{{ $peminjamanBarangSiswa->tanggal_pinjam }}</td>
+                                <td class="text-center" style="font-size: 9px">{{ $peminjamanBarangSiswa->tanggal_kembali }}</td>
+                                <td class="text-center" style="font-size: 9px">
+                                    @if($peminjamanBarangSiswa->status == 'Pending')
+                                        Pending
+                                    @elseif ($peminjamanBarangSiswa->status == 'Dipinjam')
                                         Dipinjam
                                     @else
                                         Dikembalikan

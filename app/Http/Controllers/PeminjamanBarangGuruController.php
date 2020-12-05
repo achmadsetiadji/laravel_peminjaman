@@ -20,7 +20,10 @@ class PeminjamanBarangGuruController extends Controller
     {
         if (Auth::user()->role_id == "1") {
             $peminjamanbaranggurus = PeminjamanBarangGuru::all();
-            return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus'));
+            $count_peminjaman_barang_guru_pending = PeminjamanBarangGuru::where('status', 'Pending')->count();
+            $count_peminjaman_barang_guru_pinjam = PeminjamanBarangGuru::where('status', 'Dipinjam')->count();
+            $count_peminjaman_barang_guru_kembali = PeminjamanBarangGuru::where('status', 'Dikembalikan')->count();
+            return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus' , 'count_peminjaman_barang_guru_pending', 'count_peminjaman_barang_guru_pinjam', 'count_peminjaman_barang_guru_kembali'));
         } else {
             $peminjamanbaranggurus = PeminjamanBarangGuru::where('user_id', Auth::user()->id)->get();
             return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus'));
@@ -128,7 +131,10 @@ class PeminjamanBarangGuruController extends Controller
         $date = $request->sortMonth;
         session(['sortMonthBarangGuru' => $date]);
         $peminjamanbaranggurus = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE' ,'%'.$date.'%')->get();
-        return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus'));
+        $count_peminjaman_barang_guru_pending = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE' ,'%'.$date.'%')->where('status', 'Pending')->count();
+        $count_peminjaman_barang_guru_pinjam = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE' ,'%'.$date.'%')->where('status', 'Dipinjam')->count();
+        $count_peminjaman_barang_guru_kembali = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE' ,'%'.$date.'%')->where('status', 'Dikembalikan')->count();
+        return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus', 'count_peminjaman_barang_guru_pending', 'count_peminjaman_barang_guru_pinjam', 'count_peminjaman_barang_guru_kembali'));
     }
 
     public function sortByYear(Request $request)
@@ -136,6 +142,9 @@ class PeminjamanBarangGuruController extends Controller
         $date = $request->sortYear;
         session(['sortYearBarangGuru' => $date]);
         $peminjamanbaranggurus = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->get();
-        return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus'));
+        $count_peminjaman_barang_guru_pending = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Pending')->count();
+        $count_peminjaman_barang_guru_pinjam = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dipinjam')->count();
+        $count_peminjaman_barang_guru_kembali = PeminjamanBarangGuru::where('tanggal_pinjam', 'LIKE', '%' . $date . '%')->where('status', 'Dikembalikan')->count();
+        return view('peminjaman_barang_guru/index', compact('peminjamanbaranggurus', 'count_peminjaman_barang_guru_pending', 'count_peminjaman_barang_guru_pinjam', 'count_peminjaman_barang_guru_kembali'));
     }
 }
